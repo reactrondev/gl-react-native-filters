@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Earlybird: {
@@ -81,25 +81,36 @@ const shaders = Shaders.create({
         lookup.x = texel.b;
         texel.b = texture2D(inputImageTexture6, lookup).b;
         gl_FragColor = vec4(texel, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const Earlybird = ({ children: t }) =>
-  (<Node
+const Earlybird = ({ children: t }) => (
+  <Node
     shader={shaders.Earlybird}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/earlyBirdCurves.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/earlybirdOverlayMap.png')),
-      inputImageTexture4: resolveAssetSource(require('../resources/vignetteMap.png')),
-      inputImageTexture5: resolveAssetSource(require('../resources/earlybirdBlowout.png')),
-      inputImageTexture6: resolveAssetSource(require('../resources/earlybirdMap.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/earlyBirdCurves.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/earlybirdOverlayMap.png")
+      ),
+      inputImageTexture4: resolveAssetSource(
+        require("../resources/vignetteMap.png")
+      ),
+      inputImageTexture5: resolveAssetSource(
+        require("../resources/earlybirdBlowout.png")
+      ),
+      inputImageTexture6: resolveAssetSource(
+        require("../resources/earlybirdMap.png")
+      ),
     }}
-  />);
+  />
+);
 
 Earlybird.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Earlybird;

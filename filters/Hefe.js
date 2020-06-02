@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Hefe: {
@@ -37,25 +37,36 @@ const shaders = Shaders.create({
                               texture2D(inputImageTexture5, vec2(metal.b, (1.0-texel.b))).b
                               );
         gl_FragColor = vec4(metaled, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const Hefe = ({ children: t }) =>
-  (<Node
+const Hefe = ({ children: t }) => (
+  <Node
     shader={shaders.Hefe}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/edgeBurn.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/hefeMap.png')),
-      inputImageTexture4: resolveAssetSource(require('../resources/hefeGradientMap.png')),
-      inputImageTexture5: resolveAssetSource(require('../resources/hefeSoftLight.png')),
-      inputImageTexture6: resolveAssetSource(require('../resources/hefeMetal.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/edgeBurn.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/hefeMap.png")
+      ),
+      inputImageTexture4: resolveAssetSource(
+        require("../resources/hefeGradientMap.png")
+      ),
+      inputImageTexture5: resolveAssetSource(
+        require("../resources/hefeSoftLight.png")
+      ),
+      inputImageTexture6: resolveAssetSource(
+        require("../resources/hefeMetal.png")
+      ),
     }}
-  />);
+  />
+);
 
 Hefe.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Hefe;

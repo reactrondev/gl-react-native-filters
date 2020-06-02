@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Toaster: {
@@ -68,25 +68,36 @@ const shaders = Shaders.create({
         tmpvar_8.w = 1.0;
         tmpvar_8.xyz = texel;
         gl_FragColor = tmpvar_8;
-      }`
-  }
+      }`,
+  },
 });
 
-const Toaster = ({ children: t }) =>
-  (<Node
+const Toaster = ({ children: t }) => (
+  <Node
     shader={shaders.Toaster}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/toasterMetal.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/toasterSoftLight.png')),
-      inputImageTexture4: resolveAssetSource(require('../resources/toasterCurves.png')),
-      inputImageTexture5: resolveAssetSource(require('../resources/toasterOverlayMapWarm.png')),
-      inputImageTexture6: resolveAssetSource(require('../resources/toasterColorShift.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/toasterMetal.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/toasterSoftLight.png")
+      ),
+      inputImageTexture4: resolveAssetSource(
+        require("../resources/toasterCurves.png")
+      ),
+      inputImageTexture5: resolveAssetSource(
+        require("../resources/toasterOverlayMapWarm.png")
+      ),
+      inputImageTexture6: resolveAssetSource(
+        require("../resources/toasterColorShift.png")
+      ),
     }}
-  />);
+  />
+);
 
 Toaster.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Toaster;

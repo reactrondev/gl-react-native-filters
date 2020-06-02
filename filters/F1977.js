@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   F1977: {
@@ -18,21 +18,24 @@ const shaders = Shaders.create({
                     texture2D(inputImageTexture2, vec2(texel.g, .5)).g,
                     texture2D(inputImageTexture2, vec2(texel.b, .83333)).b);
         gl_FragColor = vec4(texel, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const F1977 = ({ children: t }) =>
-  (<Node
+const F1977 = ({ children: t }) => (
+  <Node
     shader={shaders.F1977}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/1977map.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/1977map.png")
+      ),
     }}
-  />);
+  />
+);
 
 F1977.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default F1977;

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Nashville: {
@@ -18,21 +18,24 @@ const shaders = Shaders.create({
                     texture2D(inputImageTexture2, vec2(texel.g, .5)).g,
                     texture2D(inputImageTexture2, vec2(texel.b, .16666)).b);
         gl_FragColor = vec4(texel, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const Nashville = ({ children: t }) =>
-  (<Node
+const Nashville = ({ children: t }) => (
+  <Node
     shader={shaders.Nashville}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/nashvilleMap.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/nashvilleMap.png")
+      ),
     }}
-  />);
+  />
+);
 
 Nashville.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Nashville;

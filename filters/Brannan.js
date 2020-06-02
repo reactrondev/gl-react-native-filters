@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Brannan: {
@@ -64,25 +64,36 @@ const shaders = Shaders.create({
         lookup.x = texel.b;
         texel.b = texture2D(inputImageTexture6, lookup).b;
         gl_FragColor = vec4(texel, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const Brannan = ({ children: t }) =>
-  (<Node
+const Brannan = ({ children: t }) => (
+  <Node
     shader={shaders.Brannan}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/brannanProcess.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/brannanBlowout.png')),
-      inputImageTexture4: resolveAssetSource(require('../resources/brannanContrast.png')),
-      inputImageTexture5: resolveAssetSource(require('../resources/brannanLuma.png')),
-      inputImageTexture6: resolveAssetSource(require('../resources/brannanScreen.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/brannanProcess.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/brannanBlowout.png")
+      ),
+      inputImageTexture4: resolveAssetSource(
+        require("../resources/brannanContrast.png")
+      ),
+      inputImageTexture5: resolveAssetSource(
+        require("../resources/brannanLuma.png")
+      ),
+      inputImageTexture6: resolveAssetSource(
+        require("../resources/brannanScreen.png")
+      ),
     }}
-  />);
+  />
+);
 
 Brannan.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Brannan;

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Sutro: {
@@ -34,25 +34,36 @@ const shaders = Shaders.create({
         texel.g = texture2D(inputImageTexture6, vec2(texel.g, .5)).g;
         texel.b = texture2D(inputImageTexture6, vec2(texel.b, .16666)).b;
         gl_FragColor = vec4(texel, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const Sutro = ({ children: t }) =>
-  (<Node
+const Sutro = ({ children: t }) => (
+  <Node
     shader={shaders.Sutro}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/vignetteMap.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/sutroMetal.png')),
-      inputImageTexture4: resolveAssetSource(require('../resources/softLight.png')),
-      inputImageTexture5: resolveAssetSource(require('../resources/sutroEdgeBurn.png')),
-      inputImageTexture6: resolveAssetSource(require('../resources/sutroCurves.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/vignetteMap.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/sutroMetal.png")
+      ),
+      inputImageTexture4: resolveAssetSource(
+        require("../resources/softLight.png")
+      ),
+      inputImageTexture5: resolveAssetSource(
+        require("../resources/sutroEdgeBurn.png")
+      ),
+      inputImageTexture6: resolveAssetSource(
+        require("../resources/sutroCurves.png")
+      ),
     }}
-  />);
+  />
+);
 
 Sutro.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Sutro;

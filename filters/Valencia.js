@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Valencia: {
@@ -37,22 +37,27 @@ const shaders = Shaders.create({
                     texture2D(inputImageTexture3, vec2(luma, (1.0-texel.g))).g,
                     texture2D(inputImageTexture3, vec2(luma, (1.0-texel.b))).b);
         gl_FragColor = vec4(texel, 1.0);
-      }`
-  }
+      }`,
+  },
 });
 
-const Valencia = ({ children: t }) =>
-  (<Node
+const Valencia = ({ children: t }) => (
+  <Node
     shader={shaders.Valencia}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/valenciaMap.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/valenciaGradientMap.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/valenciaMap.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/valenciaGradientMap.png")
+      ),
     }}
-  />);
+  />
+);
 
 Valencia.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Valencia;

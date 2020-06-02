@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { GLSL, Shaders, Node } from 'gl-react';
-import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
+import { GLSL, Shaders, Node } from "gl-react";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
 const shaders = Shaders.create({
   Sierra: {
@@ -25,23 +25,30 @@ const shaders = Shaders.create({
         mapped.b = texture2D(inputImageTexture4, vec2(texel.b, .16666)).b;
         mapped.a = 1.0;
         gl_FragColor = mapped;
-      }`
-  }
+      }`,
+  },
 });
 
-const Sierra = ({ children: t }) =>
-  (<Node
+const Sierra = ({ children: t }) => (
+  <Node
     shader={shaders.Sierra}
     uniforms={{
       inputImageTexture: t,
-      inputImageTexture2: resolveAssetSource(require('../resources/sierraVignette.png')),
-      inputImageTexture3: resolveAssetSource(require('../resources/overlayMap.png')),
-      inputImageTexture4: resolveAssetSource(require('../resources/sierraMap.png'))
+      inputImageTexture2: resolveAssetSource(
+        require("../resources/sierraVignette.png")
+      ),
+      inputImageTexture3: resolveAssetSource(
+        require("../resources/overlayMap.png")
+      ),
+      inputImageTexture4: resolveAssetSource(
+        require("../resources/sierraMap.png")
+      ),
     }}
-  />);
+  />
+);
 
 Sierra.propTypes = {
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default Sierra;
